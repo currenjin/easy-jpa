@@ -21,7 +21,7 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	implementation 'javax.persistence:javax.persistence-api:2.2'
 	implementation 'org.hibernate:hibernate-core:5.6.1.Final'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'≠
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
