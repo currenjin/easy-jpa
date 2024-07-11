@@ -3,14 +3,14 @@ package com.currenjin.easy_jpa.service;
 import com.currenjin.easy_jpa.domain.Book;
 import com.currenjin.easy_jpa.repository.Repository;
 import com.currenjin.easy_jpa.repository.RepositoryImpl;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
