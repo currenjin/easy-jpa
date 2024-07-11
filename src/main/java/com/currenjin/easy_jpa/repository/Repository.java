@@ -2,7 +2,7 @@ package com.currenjin.easy_jpa.repository;
 
 import java.util.Optional;
 
-interface Repository<T, ID> {
+public interface Repository<T, ID> {
 
     <S extends T> S save(S entity);
 
