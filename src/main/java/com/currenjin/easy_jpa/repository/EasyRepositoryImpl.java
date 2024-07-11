@@ -2,15 +2,17 @@ package com.currenjin.easy_jpa.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public class RepositoryImpl<T, ID> implements Repository<T, ID> {
+@Repository
+public class EasyRepositoryImpl<T, ID> implements EasyRepository<T, ID> {
 
     private EntityManager entityManager;
     private final Class<T> domainClass;
 
-    public RepositoryImpl(Class<T> domainClass) {
+    public EasyRepositoryImpl(Class<T> domainClass) {
         this.domainClass = domainClass;
     }
 

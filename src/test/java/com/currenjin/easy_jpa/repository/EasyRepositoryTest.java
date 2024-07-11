@@ -12,26 +12,26 @@ import org.springframework.context.annotation.FilterType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = RepositoryImpl.class))
-public class RepositoryTest {
+@DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = EasyRepositoryImpl.class))
+public class EasyRepositoryTest {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    private Repository<Book, Long> bookRepository;
+    private EasyRepository<Book, Long> bookEasyRepository;
 
     @BeforeEach
     void setUp() {
-        bookRepository = new RepositoryImpl<>(Book.class);
-        ((RepositoryImpl<Book, Long>) bookRepository).setEntityManager(entityManager);
+        bookEasyRepository = new EasyRepositoryImpl<>(Book.class);
+        ((EasyRepositoryImpl<Book, Long>) bookEasyRepository).setEntityManager(entityManager);
     }
 
     @Test
     void testSaveAndFindById() {
         Book book = new Book("Test Book", "Test Author");
-        bookRepository.save(book);
+        bookEasyRepository.save(book);
 
-        Book foundBook = bookRepository.findById(book.getId()).orElse(null);
+        Book foundBook = bookEasyRepository.findById(book.getId()).orElse(null);
 
         assertThat(foundBook).isNotNull();
         assertThat(foundBook.getTitle()).isEqualTo("Test Book");
@@ -42,10 +42,10 @@ public class RepositoryTest {
     void testFindAll() {
         Book book1 = new Book("Test Book 1", "Test Author 1");
         Book book2 = new Book("Test Book 2", "Test Author 2");
-        bookRepository.save(book1);
-        bookRepository.save(book2);
+        bookEasyRepository.save(book1);
+        bookEasyRepository.save(book2);
 
-        Iterable<Book> books = bookRepository.findAll();
+        Iterable<Book> books = bookEasyRepository.findAll();
 
         assertThat(books).hasSize(2);
     }
@@ -53,10 +53,10 @@ public class RepositoryTest {
     @Test
     void testDeleteById() {
         Book book = new Book("Test Book", "Test Author");
-        bookRepository.save(book);
+        bookEasyRepository.save(book);
 
-        bookRepository.deleteById(book.getId());
-        Book foundBook = bookRepository.findById(book.getId()).orElse(null);
+        bookEasyRepository.deleteById(book.getId());
+        Book foundBook = bookEasyRepository.findById(book.getId()).orElse(null);
 
         assertThat(foundBook).isNull();
     }

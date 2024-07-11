@@ -1,8 +1,8 @@
 package com.currenjin.easy_jpa.service;
 
 import com.currenjin.easy_jpa.domain.Book;
-import com.currenjin.easy_jpa.repository.Repository;
-import com.currenjin.easy_jpa.repository.RepositoryImpl;
+import com.currenjin.easy_jpa.repository.EasyRepository;
+import com.currenjin.easy_jpa.repository.EasyRepositoryImpl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,20 +14,20 @@ import org.springframework.context.annotation.FilterType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {Repository.class, BookService.class}))
+@DataJpaTest(includeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {EasyRepository.class, BookService.class}))
 public class BookServiceTest {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     private BookService bookService;
-    private Repository<Book, Long> bookRepository;
+    private EasyRepository<Book, Long> bookEasyRepository;
 
     @BeforeEach
     void setUp() {
-        bookRepository = new RepositoryImpl<>(Book.class);
-        ((RepositoryImpl<Book, Long>) bookRepository).setEntityManager(entityManager);
-        bookService = new BookService(bookRepository);
+        bookEasyRepository = new EasyRepositoryImpl<>(Book.class);
+        ((EasyRepositoryImpl<Book, Long>) bookEasyRepository).setEntityManager(entityManager);
+        bookService = new BookService(bookEasyRepository);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class BookServiceTest {
     @Test
     void testFindBookById() {
         Book book = new Book("Test Book", "Test Author");
-        bookRepository.save(book);
+        bookEasyRepository.save(book);
 
         Book foundBook = bookService.findBookById(book.getId());
 
