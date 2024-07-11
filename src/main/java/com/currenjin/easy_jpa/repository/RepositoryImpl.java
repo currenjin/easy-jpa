@@ -1,9 +1,7 @@
 package com.currenjin.easy_jpa.repository;
 
-
-import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
-
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 public class RepositoryImpl<T, ID> implements Repository<T, ID> {

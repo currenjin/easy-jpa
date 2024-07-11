@@ -2,8 +2,9 @@ package com.currenjin.easy_jpa.service;
 
 import com.currenjin.easy_jpa.domain.Book;
 import com.currenjin.easy_jpa.repository.Repository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 public class BookService {
