@@ -1,2 +1,2 @@
 # easy-jpa
-📀 Simplifying Java Persistence by currenjin
+📀 Simplifying Java Persistence by currenjin.
